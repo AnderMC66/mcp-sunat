@@ -3,6 +3,8 @@ import { Command } from "commander";
 import chalk from "chalk";
 import Table from "cli-table3";
 import ora from "ora";
+import figlet from "figlet";
+import boxen from "boxen";
 import os from "node:os";
 import path from "node:path";
 import {
@@ -14,13 +16,36 @@ import {
 } from "./core.js";
 import { cacheDir, clearCache } from "./cache.js";
 
+const AUTOR = "andermc66";
+
+function espaciado(texto: string): string {
+  return texto.toUpperCase().split("").join(" ");
+}
+
+function banner(): string {
+  const nombre = chalk.cyan.bold(figlet.textSync("SUNAT MCP", { font: "Standard" }));
+  const autor = chalk.magentaBright.bold.underline(`AUTOR: ${espaciado(AUTOR)}`);
+  const info = boxen(`${nombre}\n${autor}`, {
+    padding: 1,
+    margin: 0,
+    borderStyle: "round",
+    borderColor: "cyan",
+  });
+  return info;
+}
+
 const program = new Command();
 
 program
   .name("sunat")
   .description("CLI para explorar y descargar los datasets abiertos de SUNAT (datosabiertos.gob.pe)")
   .option("--json", "imprime JSON crudo en vez de tablas formateadas")
-  .option("--no-color", "desactiva colores en la salida");
+  .option("--no-color", "desactiva colores en la salida")
+  .addHelpText("beforeAll", () => banner());
+
+if (process.argv.length <= 2) {
+  process.argv.push("--help");
+}
 
 function jsonMode(): boolean {
   return Boolean(program.opts().json);
