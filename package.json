@@ -1,14 +1,24 @@
 {
   "name": "sunat-datos-abiertos-mcp",
-  "version": "1.0.0",
-  "description": "Servidor MCP para consultar datasets abiertos de SUNAT (Padron RUC, comprobantes electronicos, etc.) via la Plataforma Nacional de Datos Abiertos del Peru",
+  "version": "2.0.0",
+  "description": "Servidor MCP y CLI para consultar los datasets abiertos de SUNAT (padron RUC, comprobantes electronicos, agentes de retencion) en streaming, sin descargar archivos de varios GB",
   "main": "build/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "start": "node build/index.js"
+    "start": "node build/index.js",
+    "typecheck": "tsc --noEmit",
+    "prepare": "npm run build",
+    "test": "npm run build && node --test \"build/**/*.test.js\""
   },
-  "keywords": [],
+  "keywords": [
+    "mcp",
+    "sunat",
+    "peru",
+    "datos-abiertos",
+    "ckan",
+    "ruc",
+    "cli"
+  ],
   "author": "andermc66",
   "license": "ISC",
   "type": "module",
@@ -32,5 +42,8 @@
   "bin": {
     "sunat-datos-abiertos-mcp": "build/index.js",
     "sunat": "build/cli.js"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }
