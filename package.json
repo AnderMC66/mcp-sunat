@@ -20,7 +20,7 @@
     "cli"
   ],
   "author": "andermc66",
-  "license": "ISC",
+  "license": "MIT",
   "type": "module",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
