@@ -159,3 +159,7 @@ npm run build   # compila TypeScript a build/
 npm start       # corre el servidor MCP compilado
 node build/cli.js list   # corre la CLI sin npm link
 ```
+
+## Licencia
+
+MIT. Ver [LICENSE](LICENSE).
